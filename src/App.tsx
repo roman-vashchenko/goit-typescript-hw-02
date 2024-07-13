@@ -7,7 +7,7 @@ import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 import ImageModal from "./components/ImageModal/ImageModal";
 
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
-import { Image } from "./types";
+import { ApiResponse, Image } from "./types";
 import Loader from "./components/Loader/Loader";
 
 function App() {
@@ -26,7 +26,7 @@ function App() {
         setError(false);
         setLoader(true);
         setShowBtn(false);
-        const data = await getImagesApi(query, page);
+        const data: ApiResponse = await getImagesApi(query, page);
         setImages((prevImages) => [...prevImages, ...data.results]);
         setShowBtn(data.total_pages && data.total_pages !== page);
       } catch (e) {
